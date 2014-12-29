@@ -98,7 +98,7 @@ module SimpleCalendar
           content_tag(:tr) do
             capture do
               dates.each do |date|
-                concat content_tag(:th, I18n.t(options.fetch(:day_names, "date.abbr_day_names"))[date.wday].char.first)
+                concat content_tag(:th, I18n.t(options.fetch(:day_names, "date.abbr_day_names"))[date.wday].chars.first)
               end
             end
           end
