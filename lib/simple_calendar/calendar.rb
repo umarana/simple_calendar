@@ -59,7 +59,7 @@ module SimpleCalendar
 
     def render_week(week)
       results = week.map do |day|
-        content_tag :td, get_option(:td, start_date, day) do
+        content_tag :td, get_option(:td, start_date, day),class:'test' do
           block.call(day, events_for_date(day))
         end
       end
@@ -121,7 +121,15 @@ module SimpleCalendar
       ->(start_date, current_calendar_date) {
         today = Time.zone.now.to_date
         td_class = ["day"]
-
+        @events.each do |event|
+          if event.start_date.to_date == current_calendar_date
+            if event.event_type != "busy"
+              td_class << "event" 
+            else
+              td_class << "busy_event" 
+            end
+          end
+        end
         td_class << "today"  if today == current_calendar_date
         td_class << "past"   if today > current_calendar_date
         td_class << "future" if today < current_calendar_date
