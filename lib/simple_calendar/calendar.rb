@@ -59,7 +59,7 @@ module SimpleCalendar
 
     def render_week(week)
       results = week.map do |day|
-        content_tag :td, get_option(:td, start_date, day),class:'test' do
+        content_tag :td, get_option(:td, start_date, day) do
           block.call(day, events_for_date(day))
         end
       end
@@ -138,7 +138,7 @@ module SimpleCalendar
         td_class << "current-month" if start_date.month == current_calendar_date.month
         td_class << "wday-#{current_calendar_date.wday.to_s}"
 
-        { class: td_class.join(" ") }
+        { class: td_class.join(" ") ,date:current_calendar_date}
       }
     end
 
