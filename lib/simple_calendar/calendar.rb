@@ -126,7 +126,11 @@ module SimpleCalendar
             if event.event_type != "busy"
               td_class << "event" 
             else
-              td_class << "busy_event" 
+              if event.google_event == true
+                td_class << "google_event" 
+              else
+                td_class << "busy_event" 
+              end
             end
           end
         end
